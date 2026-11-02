@@ -8,7 +8,7 @@ async function analyzeImage(image) {
   const FormData = require(“form-data”);
   const form = new FormData();
   form.append(“image”, image, { filename: “image.png”, contentType: “image/png” });
-  const response = await axios.post(`${FLASK_URL}/predict`, form, {
+  const response = await axios.post(FLASK_URL + “/predict”, form, {
     headers: form.getHeaders(),
     timeout: 30000,
   });
