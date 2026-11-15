@@ -106,11 +106,10 @@ router.post("/analyze", authenticateToken, (req, res) => {
             const ingredients = recommendations.filter(function(i) { return i.category === "ingredient"; }).map(function(i) { return i.recommendation; }).join("\n");
             const warnings = recommendations.filter(function(i) { return i.category === "warning"; }).map(function(i) { return i.recommendation; }).join("\n");
 
-            await connection.execute(
-                "INSERT INTO Recommendation (analysis_id, morning_routine, night_routine, ingredients, warnings) VALUES (?, ?, ?, ?, ?)",
-                [analysisInsert.insertId, morningrt] = await connectnull, ingredientsequire("express");
-connull]
-            );
+           await connection.execute(
+            “INSERT INTO Recommendation (analysis_id, morning_routine, night_routine, ingredients, warnings) VALUES (?, ?, ?, ?, ?)”,
+            [analysisInsert.insertId, morning || null, night || null, ingredients || null, warnings || null]
+        );
 
             await connection.execute(
                 "INSERT INTO History (user_id, analysis_id) VALUES (?, ?)",
