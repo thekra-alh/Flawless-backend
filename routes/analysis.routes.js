@@ -98,7 +98,7 @@ router.post("/analyze", authenticateToken, (req, res) => {
             if (connection) { await connection.rollback().catch(function() {}); }
             if (savedImagePath) { await fs.unlink(savedImagePath).catch(function() {}); }
             console.error("Analysis/database error:", error);
-            return res.status(500).json({ success: false, status: "failed", message: "Image analysis or database saving failed." });
+            return res.status(500).json({ success: false, status: "failed", message: "Image analysis or database saving failed.", debug: String((error.code || "") + " " + (error.message || "")).slice(0, 150) });
         } finally {
             if (connection) connection.release();
         }
